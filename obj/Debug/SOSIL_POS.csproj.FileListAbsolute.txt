@@ -10,10 +10,11 @@ D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실�
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\bin\Debug\MySql.Data.xml
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\bin\Debug\Renci.SshNet.xml
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.csprojAssemblyReference.cache
-D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.Form1.resources
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.Properties.Resources.resources
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.csproj.GenerateResource.cache
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.csproj.CoreCompileInputs.cache
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.csproj.CopyComplete
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.exe
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.pdb
+D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.MainLogin.resources
+D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.POSMain.resources
