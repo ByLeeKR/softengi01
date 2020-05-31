@@ -40,8 +40,7 @@ namespace SOSIL_POS
                     MessageBox.Show("연결되었습니다! POS프로그램을 실행합니다");
                     connection.Close(); //차후 연결이 필요할때마다 연결? 일단 Form 1에서는 Disconnect
                     POSMain Form = new POSMain();
-                    Form.Father = this;     // POS 폼이 닫혔을 때 Login 폼도 닫히도록
-                    Form.SQLLOGIN = SQLLOGIN;   //또한 SQL 정보를 자식 폼에게 전달
+                    Form.LoginDataLoad(SQLLOGIN, this);   //또한 SQL 정보를 자식 폼에게 전달
                     Form.Show();
                     this.Hide();
                 }
