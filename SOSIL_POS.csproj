@@ -51,6 +51,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Transactions" />
@@ -68,11 +69,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSet.cs">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MainLogin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuSelect.Designer.cs">
+      <DependentUpon>MenuSelect.cs</DependentUpon>
     </Compile>
     <Compile Include="POSMain.cs">
       <SubType>Form</SubType>
@@ -84,6 +99,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainLogin.resx">
       <DependentUpon>MainLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuSelect.resx">
+      <DependentUpon>MenuSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POSMain.resx">
       <DependentUpon>POSMain.cs</DependentUpon>
@@ -98,6 +116,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -114,6 +143,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\03_03_문장_로고타입_조합_국영문_가로_1Color_typeB.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ProjectPlan.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

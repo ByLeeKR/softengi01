@@ -39,14 +39,13 @@ namespace SOSIL_POS
                     connection.Open();  // 연결 시도
                     MessageBox.Show("연결되었습니다! POS프로그램을 실행합니다");
                     connection.Close(); //차후 연결이 필요할때마다 연결? 일단 Form 1에서는 Disconnect
-                    POSMain Form = new POSMain();
-                    Form.LoginDataLoad(SQLLOGIN, this);   //또한 SQL 정보를 자식 폼에게 전달
+                    POSMain Form = new POSMain(SQLLOGIN, this);
                     Form.Show();
                     this.Hide();
                 }
                 catch(MySqlException ex)
                 {
-                    MessageBox.Show("연결이 거부되었습니다! \r\n" + ex);
+                    MessageBox.Show("연결이 거부되었습니다! \r\n 로그인 데이터 및 MYSQL상태를 확인해주세요." + ex);
                 }
                 catch(Exception ex)
                 {
@@ -57,7 +56,10 @@ namespace SOSIL_POS
 
         private void BtnOffline_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("설계 중...");
+            POSMain Form = new POSMain("Offline", this);
+            Form.Show();
+            this.Hide();
+            //MessageBox.Show("설계 중...");
         }
     }
 }
