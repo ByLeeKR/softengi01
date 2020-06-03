@@ -129,7 +129,6 @@ namespace SOSIL_POS
                     senddata.SubItems.Add(DataTable[TableNumber - 1].Tables["TableData"].Rows[i][2].ToString());
                     SelectMenu.GetFatherList(senddata);
                 }
-                MessageBox.Show("뭔가가 있습니다");
                 SelectMenu.Show();
             }
         }

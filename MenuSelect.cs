@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace SOSIL_POS
 {
@@ -33,6 +34,13 @@ namespace SOSIL_POS
 
         private void MenuSelect_Load(object sender, EventArgs e)
         {
+            MySqlConnection connection = new MySqlConnection(SQLLOGIN);
+            //connection.Open();
+            string query = "SELECT * FROM menudata";
+            MySqlDataAdapter adapt = new MySqlDataAdapter(query, connection);
+            adapt.Fill(dataset, "menudata");
+            MenuView.DataSource = dataset.Tables["menudata"];
+            //connection.Close();
             //SQL에 질의를 통해 메뉴 목록을 가지고 옴
             //메뉴 목록을 하나씩 DataSet에 추가
             //dataset.Tables["MenuData"].Rows.Add(new object[] { 메뉴 이름, 가격 });

@@ -30,15 +30,61 @@ namespace SOSIL_POS
             }
             else //입력된 값이 있을 경우 DB 연결 시도
             {
-                string SQLLOGIN = "Server=Localhost; Port=" + TxtPort.Text + "; Database=test; Uid="
+                string SQLLOGIN = "Server=Localhost; Port=" + TxtPort.Text + "; Database=; Uid="
                     + TxtID.Text + "; Pwd=" + TxtPW.Text;
                 MySqlConnection connection = new MySqlConnection(SQLLOGIN);
-
                 try
                 {
                     connection.Open();  // 연결 시도
                     MessageBox.Show("연결되었습니다! POS프로그램을 실행합니다");
-                    connection.Close(); //차후 연결이 필요할때마다 연결? 일단 Form 1에서는 Disconnect
+                    string query = "USE SOSIL_POS";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    catch //DB가 없을 때, DB와 테이블을 만든다
+                    {
+                        string DBcreate = "CREATE DATABASE SOSIL_POS default CHARACTER SET UTF8";
+                        MySqlCommand createDB = new MySqlCommand(DBcreate, connection);
+                        createDB.ExecuteNonQuery();
+                        DBcreate = "CREATE TABLE MENUDATA(`name` VARCHAR(20) PRIMARY KEY NOT NULL," +
+                        "`price` INT NOT NULL);";
+                        createDB = new MySqlCommand(DBcreate, connection);
+                        createDB.ExecuteNonQuery();
+                        command.ExecuteNonQuery(); // 만들고 다시 연결
+                    }
+
+                    //오늘 날짜의 매출 기록용 DB
+                    string date = DateTime.Now.ToString("yyyyMMdd");
+                    //DB 생성 여부를 질의
+                    query = "SHOW TABLES LIKE '" + date + "'";
+                    command = new MySqlCommand(query, connection);
+                    MySqlDataReader reader = command.ExecuteReader();
+                    reader.Read();
+                    try 
+                    {
+                        //이미 생성되어있는 경우
+                        if (reader[0] != DBNull.Value)
+                        {
+                            reader.Close();
+                        }
+                    }
+                    catch (MySqlException)
+                    {
+                        //생성되지 않아 Exception 발생 시 새로 생성
+                        reader.Close();
+                        query = "CREATE TABLE `" + date + "`(num INT PRIMARY KEY AUTO_INCREMENT," +
+                                "`times` CHAR(10) NOT NULL," +
+                                "`sales` INT NOT NULL);";
+                        MySqlCommand CreateDaily = new MySqlCommand(query, connection);
+                        CreateDaily.ExecuteNonQuery();
+                        MessageBox.Show("좋은 하루 되세요."); //첫 기동시에만 나옴
+                    }
+
+                    connection.Close();
+                    SQLLOGIN = "Server=Localhost; Port=" + TxtPort.Text + "; Database=SOSIL_POS; Uid="
+                    + TxtID.Text + "; Pwd=" + TxtPW.Text;
                     POSMain Form = new POSMain(SQLLOGIN, this);
                     Form.Show();
                     this.Hide();
