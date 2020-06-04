@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using MySqlX.XDevAPI.Relational;
 
 namespace SOSIL_POS
 {
@@ -28,8 +29,8 @@ namespace SOSIL_POS
             {
                 DataTable.Add(new DataSet());
             }
-            DataTable[0].Tables["TableData"].Rows.Add(new object[] { 1, "kim", 30 });
-            MessageBox.Show(DataTable[0].Tables["TableData"].Rows[0][0].ToString());
+            DataTable[0].Tables["TableData"].Rows.Add(new object[] { "김밥", 5, 5000 });
+            //MessageBox.Show(DataTable[0].Tables["TableData"].Rows[0][0].ToString()); //김밥이 출력댐!
             //int v = DataTable[1].Tables["Person"].Rows.Count;
             //string a = DataTable[1].Tables["Person"].Rows[0][0].ToString(); // 값 가져오는 법
         }
@@ -41,61 +42,120 @@ namespace SOSIL_POS
 
         private void Table_Click(object sender, EventArgs e)
         {
-            // 클릭 시 좌측에 현재 메뉴 목록 출현
-            // 포인팅할 부분을 정의 (변수 설정)
-            // 결제 버튼을 누를 시 해당 테이블의 정보를 바탕으로 결제창으로 넘어가고, 결제 완료 버튼 클릭 시 초기화
-            // 데이터의 관리는? 구조체 배열 활용? (25개의 구조체 배열 길이
-            // 구조체에서 저장할 데이터는? 메뉴 데이터?
+            //MessageBox.Show("HO!");
+            int TableNumber = 0;
+            //테이블 번호 찾기
+            for (int i = 1; i <= 20; i++)
+            {
+                if (((Label)sender).Name == "Table" + i.ToString()) //라벨 이름과 i의 비교
+                {
+                    TableNumber = i-1;
+                }
+            }
+            TableListViewShow(TableNumber);
+        }
 
-            //혹은 invisible 속성으로 리스트뷰를 만들고
-            //로그인과 동시에 리스트 뷰에 DB에서 읽은 데이터를 하나하나 삽입?
+        public void TableListViewShow(int TableNumber)
+        {
+            string[] data = new string[3];
+            int rowcount = DataTable[TableNumber].Tables["TableData"].Rows.Count;
+            int cost = 0;
+            int fullcost = 0;
+            TableListView.Items.Clear();
+            TableNumLbl.Text = "테이블 번호: " + (TableNumber + 1).ToString(); ;
+            for (int i = 0; i < rowcount; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = DataTable[TableNumber].Tables["TableData"].Rows[i][0].ToString();
+                item.SubItems.Add(DataTable[TableNumber].Tables["TableData"].Rows[i][1].ToString());
+                item.SubItems.Add(DataTable[TableNumber].Tables["TableData"].Rows[i][2].ToString());
+                TableListView.Items.Add(item);
+                cost = int.Parse(DataTable[TableNumber].Tables["TableData"].Rows[i][2].ToString());
+                fullcost = fullcost + cost;
+            }
+            FullcostTxt.Text = fullcost.ToString();
+            TableCostEdit(fullcost, TableNumber);
+        }
 
-            //해결해야하는 점 1. 메뉴를 어떻게 저장할 것인가
-            //해결해야하는 점 2. DB상의 메뉴를 읽고, 읽은 데이터의 저장 방식
-            // ㄴ 노드와 노드의 sub노드를 추가하는 방식을 사용? ListView?
-            // 메뉴 설정 모드 (테이블 더블 클릭)에서 나오는 ListView에서 더블클릭하면
-            // 더블 클릭한 메뉴가 왼쪽으로 
-
-            // 1번 안 배열 + ArrayList형태의 2차원 배열로 생성
-            // Table마다 ArrayList를 추가하고, 메뉴가 추가될 때 마다 ArrayList를 추가?
-            // 정정: 첫 ArrayList는 범위 20으로 설정하고, 테이블 번호를 지정
-            // 메뉴가 추가될 때 마다 해당 ArrayList에 String[3]의 길이의 메뉴 수량 금액을 설정
-            //ㄴ 중복 추가를 막기 위해, ArrayList의 요소와 메뉴 이름을 비교, (2차원 ArrayList[0] == "입력된 메뉴 이름")
-            //ㄴ 같을 시 수량만 증가
-            //ㄴ 다를 시 새로운 메뉴를 ArrayList에 추가
-            //ArrayList arr = new ArrayList();
-            //ArrayList k = new ArrayList();
-            //arr.Add(k);
-            //arr.Add(10);
-            //k.Add(100);
-            //int a = arr.Count;
-            //string b = (String)((ArrayList)arr[0])[0];  // 2차원 ArrayList 내 내용물 가지고 오기
-
-            //2번 안 ArrayList를 두 개 만들어서, label과 Listview를 각각 배열 요소처럼 사용
-            //클릭한게 몇 번 라벨인지 반복문으로 확인, 1번 라벨이 클릭됬으면 1번 ListView의 요소들을 가지고 와서 좌측 출력
-           // List<Label> TableNumber = new List<Label>();
-            //TableNumber.Add(this.Table1);
-            //List<ListView> TableListNumber = new List<ListView>();
-            //int i = 0;
-            //if (TableNumber[i].Name.ToString() == ("Table" + (i+1).ToString()))
-            //{
-            //    //해당 테이블에 매칭하는 ListView의 아이템을 모조리 좌측 리스트 뷰에서 출력 (초기화도 필요)
-            //    //MessageBox.Show("작동함");
-            //}
-            //Dictionary<Label, ListView> abc = new Dictionary<Label, ListView>(); // Dictionary로 연결도 가능
-
-            //0601 방향의 수정
-            //ListView가 아니라 DataSet을 사용하는건?
+        public void TableCostEdit(int fullcost, int TableNumber)
+        {
+            switch(TableNumber)
+            {
+                case 0:
+                    Table1.Text = "\r\n1번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 1:
+                    Table2.Text = "\r\n2번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 2:
+                    Table3.Text = "\r\n3번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 3:
+                    Table4.Text = "\r\n4번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 4:
+                    Table5.Text = "\r\n5번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 5:
+                    Table6.Text = "\r\n6번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 6:
+                    Table7.Text = "\r\n7번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 7:
+                    Table8.Text = "\r\n8번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 8:
+                    Table9.Text = "\r\n9번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 9:
+                    Table10.Text = "\r\n10번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 10:
+                    Table11.Text = "\r\n11번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 11:
+                    Table12.Text = "\r\n12번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 12:
+                    Table13.Text = "\r\n13번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 13:
+                    Table14.Text = "\r\n14번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 14:
+                    Table15.Text = "\r\n15번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 15:
+                    Table16.Text = "\r\n16번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 16:
+                    Table17.Text = "\r\n17번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 17:
+                    Table18.Text = "\r\n18번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 18:
+                    Table19.Text = "\r\n19번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                case 19:
+                    Table20.Text = "\r\n20번 테이블\r\n\r\n" + fullcost.ToString() + "원\r\n";
+                    break;
+                default:
+                    MessageBox.Show("프로그램에 문제가 있습니다:  TableCostEdit");
+                    break;
+            }
         }
 
         private void Table_DoubleClick(object sender, EventArgs e)
         {
+            //테이블의 데이터 셋을 보내고, 
             //변수: 테이블 번호
             int TableNumber = 0;
             //테이블 번호 찾기
-            for (int i = 1; i<20; i++)
+            for (int i = 1; i<=20; i++)
             {
-                if( ((Label)sender).Name == "Table"+i.ToString())
+                if( ((Label)sender).Name == "Table"+i.ToString()) //라벨 이름과 i의 비교
                 {
                     TableNumber = i;
                 }
@@ -111,22 +171,22 @@ namespace SOSIL_POS
             int Menus = DataTable[TableNumber - 1].Tables["TableData"].Rows.Count;
             if (Menus < 1) //메뉴가 없는 경우
             {
-                MessageBox.Show(DataTable[TableNumber - 1].Tables["TableData"].Rows.Count.ToString());
+                //MessageBox.Show(DataTable[TableNumber - 1].Tables["TableData"].Rows.Count.ToString());
                 MenuSelect SelectMenu = new MenuSelect(SQLLOGIN, this, TableNumber);
                 SelectMenu.Show();
             }
             else //메뉴가 있는 경우
             {
                 //변수: 리스트 뷰 아이템, 하위 폼 생성
-                ListViewItem senddata = new ListViewItem();
+                string[] senddata = new string[3];
                 MenuSelect SelectMenu = new MenuSelect(SQLLOGIN, this, TableNumber);
 
                 for (int i = 0; i<Menus; i++)
                 {
                     //값이 있다고 판단, 해당 데이터들을 찾고 반복문으로 ListViewItem에 하나씩 쌓고 전송
-                    senddata.Text = DataTable[0].Tables["TableData"].Rows[0][0].ToString();
-                    senddata.SubItems.Add(DataTable[TableNumber - 1].Tables["TableData"].Rows[i][1].ToString());
-                    senddata.SubItems.Add(DataTable[TableNumber - 1].Tables["TableData"].Rows[i][2].ToString());
+                    senddata[0] = DataTable[0].Tables["TableData"].Rows[i][0].ToString();
+                    senddata[1] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][1].ToString();
+                    senddata[2] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][2].ToString();
                     SelectMenu.GetFatherList(senddata);
                 }
                 SelectMenu.Show();
@@ -137,7 +197,7 @@ namespace SOSIL_POS
         {
             if (SQLLOGIN == "Offline")
             {
-                MessageBox.Show("오프라인 모드에서는 정상 작동하지 않습니다 (개발 중)");
+                MessageBox.Show("오프라인 모드에서는 일부 기능이 작동하지 않습니다");
             }
             else 
             {
@@ -150,6 +210,17 @@ namespace SOSIL_POS
                     // DB 연결 실패시?
                 }
             }
+        }
+
+        public void TableInitialize(int i)
+        {
+            DataTable[i].Clear(); //데이터셋 초기화 (사고 발생 가능 지점)
+        }
+
+        public void MenuSelectAccess(int i, string[] receive)
+        {
+            MessageBox.Show(receive[0]);
+            DataTable[i].Tables["TableData"].Rows.Add(new object[] { receive[0], receive[1], receive[2] });
         }
 
         private void PriceMenuChangeBtn_Click(object sender, EventArgs e)

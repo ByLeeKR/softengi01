@@ -48,10 +48,11 @@
             this.MenuView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MenuView.Location = new System.Drawing.Point(255, 12);
             this.MenuView.Name = "MenuView";
+            this.MenuView.ReadOnly = true;
             this.MenuView.RowTemplate.Height = 23;
             this.MenuView.Size = new System.Drawing.Size(237, 337);
             this.MenuView.TabIndex = 0;
-            this.MenuView.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MenuView_CellContentDoubleClicked);
+            this.MenuView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MenuView_CellContentDoubleClicked);
             // 
             // MenuList
             // 

@@ -30,6 +30,7 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.LayoutTable = new System.Windows.Forms.TableLayoutPanel();
+            this.Table1 = new System.Windows.Forms.Label();
             this.Table20 = new System.Windows.Forms.Label();
             this.Table17 = new System.Windows.Forms.Label();
             this.Table16 = new System.Windows.Forms.Label();
@@ -49,28 +50,28 @@
             this.Table19 = new System.Windows.Forms.Label();
             this.Table18 = new System.Windows.Forms.Label();
             this.Table5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.FullcostTxt = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.메뉴임시ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.TableListView = new System.Windows.Forms.ListView();
             this.ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnAmounts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnPrices = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PriceMenuChangeBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.Table1 = new System.Windows.Forms.Label();
+            this.TableNumLbl = new System.Windows.Forms.Label();
             this.LayoutTable.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(133, 361);
+            this.button1.Location = new System.Drawing.Point(133, 391);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 82);
+            this.button1.Size = new System.Drawing.Size(128, 52);
             this.button1.TabIndex = 0;
             this.button1.Text = "결제";
             this.button1.UseVisualStyleBackColor = true;
@@ -113,6 +114,20 @@
             this.LayoutTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.LayoutTable.Size = new System.Drawing.Size(514, 317);
             this.LayoutTable.TabIndex = 1;
+            // 
+            // Table1
+            // 
+            this.Table1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Table1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Table1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Table1.Location = new System.Drawing.Point(0, 0);
+            this.Table1.Margin = new System.Windows.Forms.Padding(0);
+            this.Table1.Name = "Table1";
+            this.Table1.Size = new System.Drawing.Size(128, 63);
+            this.Table1.TabIndex = 25;
+            this.Table1.Text = "\r\n1번 테이블\r\n\r\n0원\r\n";
+            this.Table1.Click += new System.EventHandler(this.Table_Click);
+            this.Table1.DoubleClick += new System.EventHandler(this.Table_DoubleClick);
             // 
             // Table20
             // 
@@ -380,16 +395,16 @@
             this.Table5.Click += new System.EventHandler(this.Table_Click);
             this.Table5.DoubleClick += new System.EventHandler(this.Table_DoubleClick);
             // 
-            // textBox1
+            // FullcostTxt
             // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.textBox1.Font = new System.Drawing.Font("굴림", 14F);
-            this.textBox1.Location = new System.Drawing.Point(12, 323);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(219, 29);
-            this.textBox1.TabIndex = 3;
+            this.FullcostTxt.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.FullcostTxt.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.FullcostTxt.Font = new System.Drawing.Font("굴림", 14F);
+            this.FullcostTxt.Location = new System.Drawing.Point(12, 356);
+            this.FullcostTxt.Name = "FullcostTxt";
+            this.FullcostTxt.ReadOnly = true;
+            this.FullcostTxt.Size = new System.Drawing.Size(219, 29);
+            this.FullcostTxt.TabIndex = 3;
             // 
             // menuStrip1
             // 
@@ -434,21 +449,21 @@
             this.button5.Text = "영수 관리";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // listView1
+            // TableListView
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TableListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ColumnName,
             this.ColumnAmounts,
             this.ColumnPrices});
-            this.listView1.Font = new System.Drawing.Font("굴림", 9F);
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 37);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(249, 280);
-            this.listView1.TabIndex = 9;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.TableListView.Font = new System.Drawing.Font("굴림", 9F);
+            this.TableListView.GridLines = true;
+            this.TableListView.HideSelection = false;
+            this.TableListView.Location = new System.Drawing.Point(12, 59);
+            this.TableListView.Name = "TableListView";
+            this.TableListView.Size = new System.Drawing.Size(249, 291);
+            this.TableListView.TabIndex = 9;
+            this.TableListView.UseCompatibleStateImageBehavior = false;
+            this.TableListView.View = System.Windows.Forms.View.Details;
             // 
             // ColumnName
             // 
@@ -479,39 +494,36 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label1.Location = new System.Drawing.Point(233, 327);
+            this.label1.Location = new System.Drawing.Point(237, 361);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 21);
             this.label1.TabIndex = 12;
             this.label1.Text = "원";
             // 
-            // Table1
+            // TableNumLbl
             // 
-            this.Table1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Table1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Table1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Table1.Location = new System.Drawing.Point(0, 0);
-            this.Table1.Margin = new System.Windows.Forms.Padding(0);
-            this.Table1.Name = "Table1";
-            this.Table1.Size = new System.Drawing.Size(128, 63);
-            this.Table1.TabIndex = 25;
-            this.Table1.Text = "\r\n1번 테이블\r\n\r\n0원\r\n";
-            this.Table1.Click += new System.EventHandler(this.Table_Click);
-            this.Table1.DoubleClick += new System.EventHandler(this.Table_DoubleClick);
+            this.TableNumLbl.AutoSize = true;
+            this.TableNumLbl.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.TableNumLbl.Location = new System.Drawing.Point(12, 35);
+            this.TableNumLbl.Name = "TableNumLbl";
+            this.TableNumLbl.Size = new System.Drawing.Size(136, 21);
+            this.TableNumLbl.TabIndex = 13;
+            this.TableNumLbl.Text = "테이블 번호: ";
             // 
             // POSMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 455);
+            this.Controls.Add(this.TableNumLbl);
             this.Controls.Add(this.LayoutTable);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PriceMenuChangeBtn);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.TableListView);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.FullcostTxt);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -531,13 +543,13 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel LayoutTable;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox FullcostTxt;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 메뉴임시ToolStripMenuItem;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView TableListView;
         private System.Windows.Forms.ColumnHeader ColumnName;
         private System.Windows.Forms.ColumnHeader ColumnAmounts;
         private System.Windows.Forms.ColumnHeader ColumnPrices;
@@ -563,5 +575,6 @@
         private System.Windows.Forms.Button PriceMenuChangeBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Table1;
+        private System.Windows.Forms.Label TableNumLbl;
     }
 }
