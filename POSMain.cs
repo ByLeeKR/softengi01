@@ -199,6 +199,21 @@ namespace SOSIL_POS
             Manageform.Show();
         }
 
+        private void BtnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int Tablenumber = int.Parse(TableNumLbl.Text.Substring(8, 1));
+                int cost = int.Parse(FullcostTxt.Text);
+                Pay Payform = new Pay(cost, Tablenumber, SQLLOGIN, this);
+                Payform.Show();
+            }
+            catch
+            {
+                MessageBox.Show("테이블을 선택해주세요");
+            }
+        }
+
         private void POSMain_Load(object sender, EventArgs e)
         {
             if (SQLLOGIN == "Offline")
@@ -222,6 +237,12 @@ namespace SOSIL_POS
         public void TableInitialize(int i)
         {
             DataTable[i].Clear(); //데이터셋 초기화 (사고 발생 가능 지점)
+        }
+
+        public void TableListViewInitialize()
+        {
+            TableListView.Items.Clear();
+            FullcostTxt.Text = "0";
         }
 
         //지정 테이블에 메뉴 삽입

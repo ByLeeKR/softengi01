@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtnPay = new System.Windows.Forms.Button();
             this.LayoutTable = new System.Windows.Forms.TableLayoutPanel();
             this.Table1 = new System.Windows.Forms.Label();
             this.Table20 = new System.Windows.Forms.Label();
@@ -54,9 +54,8 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.MenuTSB = new System.Windows.Forms.ToolStripMenuItem();
             this.TSCprogramExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnSales = new System.Windows.Forms.Button();
             this.BtnMenuManage = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.TableListView = new System.Windows.Forms.ListView();
             this.ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnAmounts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,14 +66,15 @@
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // BtnPay
             // 
-            this.button1.Location = new System.Drawing.Point(133, 391);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 52);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "결제";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtnPay.Location = new System.Drawing.Point(133, 391);
+            this.BtnPay.Name = "BtnPay";
+            this.BtnPay.Size = new System.Drawing.Size(128, 52);
+            this.BtnPay.TabIndex = 0;
+            this.BtnPay.Text = "결제";
+            this.BtnPay.UseVisualStyleBackColor = true;
+            this.BtnPay.Click += new System.EventHandler(this.BtnPay_Click);
             // 
             // LayoutTable
             // 
@@ -431,33 +431,24 @@
             this.TSCprogramExit.Text = "프로그램 종료";
             this.TSCprogramExit.Click += new System.EventHandler(this.TSCprogramExit_Click);
             // 
-            // button2
+            // BtnSales
             // 
-            this.button2.Location = new System.Drawing.Point(523, 361);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(128, 82);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "매출 관리";
-            this.button2.UseVisualStyleBackColor = true;
+            this.BtnSales.Location = new System.Drawing.Point(653, 361);
+            this.BtnSales.Name = "BtnSales";
+            this.BtnSales.Size = new System.Drawing.Size(128, 82);
+            this.BtnSales.TabIndex = 5;
+            this.BtnSales.Text = "매출 관리";
+            this.BtnSales.UseVisualStyleBackColor = true;
             // 
             // BtnMenuManage
             // 
-            this.BtnMenuManage.Location = new System.Drawing.Point(395, 361);
+            this.BtnMenuManage.Location = new System.Drawing.Point(523, 361);
             this.BtnMenuManage.Name = "BtnMenuManage";
             this.BtnMenuManage.Size = new System.Drawing.Size(128, 82);
             this.BtnMenuManage.TabIndex = 7;
             this.BtnMenuManage.Text = "메뉴 관리";
             this.BtnMenuManage.UseVisualStyleBackColor = true;
             this.BtnMenuManage.Click += new System.EventHandler(this.BtnMenuManage_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(651, 361);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(130, 82);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "영수 관리";
-            this.button5.UseVisualStyleBackColor = true;
             // 
             // TableListView
             // 
@@ -519,11 +510,10 @@
             this.Controls.Add(this.LayoutTable);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TableListView);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.BtnMenuManage);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.BtnSales);
             this.Controls.Add(this.FullcostTxt);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.BtnPay);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             this.Name = "POSMain";
@@ -540,14 +530,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BtnPay;
         private System.Windows.Forms.TableLayoutPanel LayoutTable;
         private System.Windows.Forms.TextBox FullcostTxt;
         private System.Windows.Forms.MenuStrip menuStrip;
         private System.Windows.Forms.ToolStripMenuItem MenuTSB;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnSales;
         private System.Windows.Forms.Button BtnMenuManage;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListView TableListView;
         private System.Windows.Forms.ColumnHeader ColumnName;
         private System.Windows.Forms.ColumnHeader ColumnAmounts;

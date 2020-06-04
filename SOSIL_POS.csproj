@@ -95,6 +95,12 @@
     <Compile Include="MenuSelect.Designer.cs">
       <DependentUpon>MenuSelect.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pay.Designer.cs">
+      <DependentUpon>Pay.cs</DependentUpon>
+    </Compile>
     <Compile Include="POSMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MenuSelect.resx">
       <DependentUpon>MenuSelect.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pay.resx">
+      <DependentUpon>Pay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="POSMain.resx">
       <DependentUpon>POSMain.cs</DependentUpon>
