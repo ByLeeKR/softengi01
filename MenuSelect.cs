@@ -56,6 +56,7 @@ namespace SOSIL_POS
             //DB가 없으면 작동 X
         }
 
+        //메뉴 추가: ContentDoubleClick이름이지만 실제로는 DoubleClick동작 (Content는 글자를 클릭해야했었음)
         private void MenuView_CellContentDoubleClicked(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -82,6 +83,7 @@ namespace SOSIL_POS
             }
         }
 
+        //메뉴 삭제
         private void MenuList_DoubleClick(object sender, EventArgs e)
         {
             int amount = int.Parse(MenuList.FocusedItem.SubItems[1].Text);
@@ -102,38 +104,22 @@ namespace SOSIL_POS
 
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
-            //부모 DataSet을 초기화 (메소드 호출)
-            //반복문: ListView 길이 만큼 (foreach)
-            //반복마다 String[3]배열에 삽입
-            //부모에서 작성된(할) 메소드를 반복문 내에서 호출, 전달하는 값은 String배열과 테이블 번호
-            //부모는 해당 값을 바탕으로 해당 테이블DataSet에 요소 추가 
-            //테이블 번호를 바탕으로 해당 테이블 DataSet 초기화
-            
             String[] send = new String[3];
-            father.TableInitialize(tablenumber-1);
-            foreach(ListViewItem item in MenuList.Items)
+            father.TableInitialize(tablenumber-1);          //부모 데이터셋을 초기화
+            foreach(ListViewItem item in MenuList.Items)    //리스트뷰 아이템을 string으로 패킹해서 메소드 통한 전송
             {
-                MessageBox.Show("전송" + item.Text);
                 send[0] = item.Text;
                 send[1] = item.SubItems[1].Text;
                 send[2] = item.SubItems[2].Text;
                 father.MenuSelectAccess(tablenumber - 1, send);
             }
-
-            father.TableListViewShow(tablenumber - 1);
-            //MenuList.Items.Clear();
-            
-            //부모 폼에 배열로 ListView 요소 하나씩 전달
-            //반복문 ListView 아이템 요소를 하나 쭉 읽고
-            //해당 내용을 배열에 저장
-            //저장된 내용을 바탕으로 부모 폼의 Dataset에 요소를 추가하도록 메소드 호출 (테이블 넘버, 배열 전송)
-            //ListView 아이템이 떨어질 때 까지 반복
+            father.TableListViewShow(tablenumber - 1);      //좌측 테이블에 리스트 보여주도록 요청
             this.Close();
         }
 
+        //폼 그냥 닫음
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            //취소 버튼 클릭 시 폼 닫음
             this.Close();
         }
     }

@@ -83,6 +83,12 @@
     <Compile Include="MainLogin.Designer.cs">
       <DependentUpon>MainLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="MenuManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuManage.Designer.cs">
+      <DependentUpon>MenuManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MainLogin.resx">
       <DependentUpon>MainLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuManage.resx">
+      <DependentUpon>MenuManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuSelect.resx">
       <DependentUpon>MenuSelect.cs</DependentUpon>

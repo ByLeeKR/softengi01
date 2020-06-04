@@ -29,7 +29,7 @@ namespace SOSIL_POS
             {
                 DataTable.Add(new DataSet());
             }
-            DataTable[0].Tables["TableData"].Rows.Add(new object[] { "김밥", 5, 5000 });
+            //DataTable[0].Tables["TableData"].Rows.Add(new object[] { "김밥", 5, 5000 });
             //MessageBox.Show(DataTable[0].Tables["TableData"].Rows[0][0].ToString()); //김밥이 출력댐!
             //int v = DataTable[1].Tables["Person"].Rows.Count;
             //string a = DataTable[1].Tables["Person"].Rows[0][0].ToString(); // 값 가져오는 법
@@ -193,6 +193,12 @@ namespace SOSIL_POS
             }
         }
 
+        private void BtnMenuManage_Click(object sender, EventArgs e)
+        {
+            MenuManage Manageform = new MenuManage(SQLLOGIN);
+            Manageform.Show();
+        }
+
         private void POSMain_Load(object sender, EventArgs e)
         {
             if (SQLLOGIN == "Offline")
@@ -212,20 +218,24 @@ namespace SOSIL_POS
             }
         }
 
+        //지정 테이블 메뉴 초기화
         public void TableInitialize(int i)
         {
             DataTable[i].Clear(); //데이터셋 초기화 (사고 발생 가능 지점)
         }
 
+        //지정 테이블에 메뉴 삽입
         public void MenuSelectAccess(int i, string[] receive)
         {
-            MessageBox.Show(receive[0]);
             DataTable[i].Tables["TableData"].Rows.Add(new object[] { receive[0], receive[1], receive[2] });
         }
 
-        private void PriceMenuChangeBtn_Click(object sender, EventArgs e)
+        private void TSCprogramExit_Click(object sender, EventArgs e)
         {
+            if(MessageBox.Show("정말로 종료하시겠습니까?\r\n" + "테이블 정보가 삭제됩니다.", "종료?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
-
     }
 }

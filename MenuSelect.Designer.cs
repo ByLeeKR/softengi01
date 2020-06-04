@@ -34,10 +34,10 @@
             this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AmountColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PriceColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.dataSet = new SOSIL_POS.DataSet();
-            this.dataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.BtnConfirm = new System.Windows.Forms.Button();
             this.BtnCancel = new System.Windows.Forms.Button();
+            this.dataSet = new SOSIL_POS.DataSet();
+            this.dataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.MenuView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetBindingSource)).BeginInit();
@@ -84,16 +84,6 @@
             this.PriceColumn.Text = "가격";
             this.PriceColumn.Width = 79;
             // 
-            // dataSet
-            // 
-            this.dataSet.DataSetName = "DataSet";
-            this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dataSetBindingSource
-            // 
-            this.dataSetBindingSource.DataSource = this.dataSet;
-            this.dataSetBindingSource.Position = 0;
-            // 
             // BtnConfirm
             // 
             this.BtnConfirm.Location = new System.Drawing.Point(336, 362);
@@ -114,6 +104,11 @@
             this.BtnCancel.UseVisualStyleBackColor = true;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
+            // dataSet
+            // 
+            this.dataSet.DataSetName = "DataSet";
+            this.dataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // MenuSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -124,7 +119,7 @@
             this.Controls.Add(this.MenuList);
             this.Controls.Add(this.MenuView);
             this.Name = "MenuSelect";
-            this.Text = "MenuSelect";
+            this.Text = "SOSIL_POS: 메뉴 선택";
             this.Load += new System.EventHandler(this.MenuSelect_Load);
             ((System.ComponentModel.ISupportInitialize)(this.MenuView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
@@ -140,9 +135,9 @@
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader AmountColumn;
         private System.Windows.Forms.ColumnHeader PriceColumn;
-        private DataSet dataSet;
-        private System.Windows.Forms.BindingSource dataSetBindingSource;
         private System.Windows.Forms.Button BtnConfirm;
         private System.Windows.Forms.Button BtnCancel;
+        private DataSet dataSet;
+        private System.Windows.Forms.BindingSource dataSetBindingSource;
     }
 }

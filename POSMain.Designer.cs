@@ -51,20 +51,20 @@
             this.Table18 = new System.Windows.Forms.Label();
             this.Table5 = new System.Windows.Forms.Label();
             this.FullcostTxt = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.메뉴임시ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.MenuTSB = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSCprogramExit = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.BtnMenuManage = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.TableListView = new System.Windows.Forms.ListView();
             this.ColumnName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnAmounts = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ColumnPrices = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PriceMenuChangeBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.TableNumLbl = new System.Windows.Forms.Label();
             this.LayoutTable.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -406,21 +406,30 @@
             this.FullcostTxt.Size = new System.Drawing.Size(219, 29);
             this.FullcostTxt.TabIndex = 3;
             // 
-            // menuStrip1
+            // menuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.메뉴임시ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(793, 24);
-            this.menuStrip1.TabIndex = 4;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuTSB});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(793, 24);
+            this.menuStrip.TabIndex = 4;
+            this.menuStrip.Text = "menuStrip1";
             // 
-            // 메뉴임시ToolStripMenuItem
+            // MenuTSB
             // 
-            this.메뉴임시ToolStripMenuItem.Name = "메뉴임시ToolStripMenuItem";
-            this.메뉴임시ToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
-            this.메뉴임시ToolStripMenuItem.Text = "메뉴(임시)";
+            this.MenuTSB.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TSCprogramExit});
+            this.MenuTSB.Name = "MenuTSB";
+            this.MenuTSB.Size = new System.Drawing.Size(43, 20);
+            this.MenuTSB.Text = "메뉴";
+            // 
+            // TSCprogramExit
+            // 
+            this.TSCprogramExit.Name = "TSCprogramExit";
+            this.TSCprogramExit.Size = new System.Drawing.Size(180, 22);
+            this.TSCprogramExit.Text = "프로그램 종료";
+            this.TSCprogramExit.Click += new System.EventHandler(this.TSCprogramExit_Click);
             // 
             // button2
             // 
@@ -431,14 +440,15 @@
             this.button2.Text = "매출 관리";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // BtnMenuManage
             // 
-            this.button4.Location = new System.Drawing.Point(395, 361);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(128, 82);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "메뉴 관리";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BtnMenuManage.Location = new System.Drawing.Point(395, 361);
+            this.BtnMenuManage.Name = "BtnMenuManage";
+            this.BtnMenuManage.Size = new System.Drawing.Size(128, 82);
+            this.BtnMenuManage.TabIndex = 7;
+            this.BtnMenuManage.Text = "메뉴 관리";
+            this.BtnMenuManage.UseVisualStyleBackColor = true;
+            this.BtnMenuManage.Click += new System.EventHandler(this.BtnMenuManage_Click);
             // 
             // button5
             // 
@@ -480,16 +490,6 @@
             this.ColumnPrices.Text = "가격";
             this.ColumnPrices.Width = 92;
             // 
-            // PriceMenuChangeBtn
-            // 
-            this.PriceMenuChangeBtn.Location = new System.Drawing.Point(267, 361);
-            this.PriceMenuChangeBtn.Name = "PriceMenuChangeBtn";
-            this.PriceMenuChangeBtn.Size = new System.Drawing.Size(128, 82);
-            this.PriceMenuChangeBtn.TabIndex = 11;
-            this.PriceMenuChangeBtn.Text = "메뉴-금액 전환";
-            this.PriceMenuChangeBtn.UseVisualStyleBackColor = true;
-            this.PriceMenuChangeBtn.Click += new System.EventHandler(this.PriceMenuChangeBtn_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -518,22 +518,21 @@
             this.Controls.Add(this.TableNumLbl);
             this.Controls.Add(this.LayoutTable);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.PriceMenuChangeBtn);
             this.Controls.Add(this.TableListView);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.BtnMenuManage);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.FullcostTxt);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.menuStrip);
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "POSMain";
-            this.Text = "SOSIL_POS: MAIN";
+            this.Text = "SOSIL_POS: 메인화면";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.POSMain_FormClosed);
             this.Load += new System.EventHandler(this.POSMain_Load);
             this.LayoutTable.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,10 +543,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel LayoutTable;
         private System.Windows.Forms.TextBox FullcostTxt;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 메뉴임시ToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem MenuTSB;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BtnMenuManage;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListView TableListView;
         private System.Windows.Forms.ColumnHeader ColumnName;
@@ -572,9 +571,9 @@
         private System.Windows.Forms.Label Table2;
         private System.Windows.Forms.Label Table19;
         private System.Windows.Forms.Label Table18;
-        private System.Windows.Forms.Button PriceMenuChangeBtn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Table1;
         private System.Windows.Forms.Label TableNumLbl;
+        private System.Windows.Forms.ToolStripMenuItem TSCprogramExit;
     }
 }
