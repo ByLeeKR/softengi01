@@ -258,5 +258,11 @@ namespace SOSIL_POS
                 this.Close();
             }
         }
+
+        private void BtnSales_Click(object sender, EventArgs e)
+        {
+            POSSalescheck salesform = new POSSalescheck(SQLLOGIN);
+            salesform.Show();
+        }
     }
 }

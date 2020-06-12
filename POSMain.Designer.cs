@@ -427,7 +427,7 @@
             // TSCprogramExit
             // 
             this.TSCprogramExit.Name = "TSCprogramExit";
-            this.TSCprogramExit.Size = new System.Drawing.Size(180, 22);
+            this.TSCprogramExit.Size = new System.Drawing.Size(150, 22);
             this.TSCprogramExit.Text = "프로그램 종료";
             this.TSCprogramExit.Click += new System.EventHandler(this.TSCprogramExit_Click);
             // 
@@ -439,6 +439,7 @@
             this.BtnSales.TabIndex = 5;
             this.BtnSales.Text = "매출 관리";
             this.BtnSales.UseVisualStyleBackColor = true;
+            this.BtnSales.Click += new System.EventHandler(this.BtnSales_Click);
             // 
             // BtnMenuManage
             // 

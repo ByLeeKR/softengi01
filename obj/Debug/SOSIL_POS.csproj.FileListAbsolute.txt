@@ -21,3 +21,4 @@ D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실�
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.MenuSelect.resources
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.MenuManage.resources
 D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.Pay.resources
+D:\HDD_Storage\6_Document\대학교\3학년 1학기\응용 소프트웨어 실습\SosilProject\SosilPOS\obj\Debug\SOSIL_POS.POSSalescheck.resources

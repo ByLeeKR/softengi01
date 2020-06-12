@@ -125,8 +125,9 @@
             this.BtnGuide.Name = "BtnGuide";
             this.BtnGuide.Size = new System.Drawing.Size(418, 23);
             this.BtnGuide.TabIndex = 9;
-            this.BtnGuide.Text = "프로그램 사용 가이드 다운로드(인터넷 연결 필요)";
+            this.BtnGuide.Text = "MySQL 다운로드 (인터넷 연결 필요)";
             this.BtnGuide.UseVisualStyleBackColor = true;
+            this.BtnGuide.Click += new System.EventHandler(this.BtnGuide_Click);
             // 
             // MainLogin
             // 

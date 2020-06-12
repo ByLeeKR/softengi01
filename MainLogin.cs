@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -106,6 +107,11 @@ namespace SOSIL_POS
             Form.Show();
             this.Hide();
             //MessageBox.Show("설계 중...");
+        }
+
+        private void BtnGuide_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://dev.mysql.com/downloads/mysql/");
         }
     }
 }
