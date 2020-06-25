@@ -155,7 +155,7 @@ namespace SOSIL_POS
             string Date = ComboYear.SelectedItem.ToString() 
                 + TMonth
                 + TDay;
-            if(SQLLOGIN == "OFFLINE")
+            if(SQLLOGIN == "Offline")
             {
                 MessageBox.Show("오프라인 모드에서는 지원되지 않는 기능입니다");
                 return;

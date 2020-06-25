@@ -52,7 +52,6 @@ namespace SOSIL_POS
                 //메뉴에 출력
                 MenuView.DataSource = dataset.Tables["menudata"];
             }
-
             //DB가 없으면 작동 X
         }
 
