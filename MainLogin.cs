@@ -49,6 +49,7 @@ namespace SOSIL_POS
                         string DBcreate = "CREATE DATABASE SOSIL_POS default CHARACTER SET UTF8";
                         MySqlCommand createDB = new MySqlCommand(DBcreate, connection);
                         createDB.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
                         DBcreate = "CREATE TABLE MENUDATA(`name` VARCHAR(20) PRIMARY KEY NOT NULL," +
                         "`price` INT NOT NULL);";
                         createDB = new MySqlCommand(DBcreate, connection);
