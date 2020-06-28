@@ -187,7 +187,7 @@ namespace SOSIL_POS
                 for (int i = 0; i<Menus; i++)
                 {
                     //값이 있다고 판단, 해당 데이터들을 찾고 반복문으로 ListViewItem에 하나씩 쌓고 전송
-                    senddata[0] = DataTable[0].Tables["TableData"].Rows[i][0].ToString();
+                    senddata[0] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][0].ToString();
                     senddata[1] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][1].ToString();
                     senddata[2] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][2].ToString();
                     SelectMenu.GetFatherList(senddata);
@@ -206,7 +206,8 @@ namespace SOSIL_POS
         {
             try
             {
-                int Tablenumber = int.Parse(TableNumLbl.Text.Substring(8, 1));
+                string[] Tnum = TableNumLbl.Text.Split(' ');
+                int Tablenumber = int.Parse(Tnum[2]);
                 int cost = int.Parse(FullcostTxt.Text);
                 Pay Payform = new Pay(cost, Tablenumber, SQLLOGIN, this);
                 Payform.Show();
