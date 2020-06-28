@@ -16,7 +16,6 @@ namespace SOSIL_POS_KITCHIN
 {
     public partial class Kitchen : Form
     {
-        int num = 1;
         IPAddress IP;
         int Port;
         bool connected = false;
@@ -83,18 +82,22 @@ namespace SOSIL_POS_KITCHIN
                 }
                 else
                 {
-                    ChkLBox.Items.Add(num.ToString() + " " + Message);
-                    num++;
+                    ChkLBox.Items.Add(Message);
                 }
             }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            int a = ChkLBox.CheckedItems.Count;
+            int a = ChkLBox.Items.Count;
             for (int i=0; i<a; i++)
             {
-                ChkLBox.Items.Remove(ChkLBox.CheckedItems[0]);
+                if(ChkLBox.GetItemChecked(i))
+                {
+                    ChkLBox.Items.RemoveAt(i);
+                    a--;
+                    i--;
+                }
             }
         }
 
@@ -112,15 +115,24 @@ namespace SOSIL_POS_KITCHIN
 
         private void Kitchen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(m_read != null)
+            try
             {
-                m_write.WriteLine("Disconnect");
-                m_write.Flush();
-                m_read.Close();
-                m_write.Close();
-                m_client.Close();
-                Receiver.Abort();
+                if (connected)
+                {
+                    m_write.WriteLine("Disconnect");
+                    m_write.Flush();
+                    m_read.Close();
+                    m_write.Close();
+                    m_client.Close();
+                    Receiver.Abort();
+                }
+                else
+                {
+                    Receiver.Abort();
+                }
             }
+            catch
+            { }
             Parents.Show();
         }
     }

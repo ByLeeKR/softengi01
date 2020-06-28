@@ -42,7 +42,12 @@ namespace SOSIL_POS
         //입력된 내용 DB에 추가하기
         private void BtnMenuAdd_Click(object sender, EventArgs e)
         {
-            if (SQLLOGIN != "Offline" && (TxtMenuName.Text != "") && (TxtMenuPrice.Text != ""))
+            if (TxtMenuName.Text == "" && TxtMenuPrice.Text == "")
+            {
+                MessageBox.Show("메뉴 이름 혹은 금액이 미입력되었습니다.");
+                return;
+            }
+            if (SQLLOGIN != "Offline")
             {
                 //일단 숫자가 맞는지 확인
                 try
@@ -54,19 +59,25 @@ namespace SOSIL_POS
                     MessageBox.Show("입력된 메뉴의 Price가 숫자가 아닙니다");
                     return;
                 }
-                //SQL에 로그인하여 추가 질의
-                MySqlConnection connection = new MySqlConnection(SQLLOGIN);
-                connection.Open();
-                string query = "INSERT INTO menudata VALUES('" + TxtMenuName.Text + "', " + TxtMenuPrice.Text + ");";
-                MySqlCommand command = new MySqlCommand(query, connection);
-                command.ExecuteNonQuery();
-
-                //뷰 갱신
-                dataset.Tables["menudata"].Clear();
-                query = "SELECT * FROM menudata";
-                MySqlDataAdapter adapt = new MySqlDataAdapter(query, connection);
-                adapt.Fill(dataset, "menudata");
-                connection.Close();
+                try
+                {
+                    //SQL에 로그인하여 추가 질의
+                    MySqlConnection connection = new MySqlConnection(SQLLOGIN);
+                    connection.Open();
+                    string query = "INSERT INTO menudata VALUES('" + TxtMenuName.Text + "', " + TxtMenuPrice.Text + ");";
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.ExecuteNonQuery();
+                    //뷰 갱신
+                    dataset.Tables["menudata"].Clear();
+                    query = "SELECT * FROM menudata";
+                    MySqlDataAdapter adapt = new MySqlDataAdapter(query, connection);
+                    adapt.Fill(dataset, "menudata");
+                    connection.Close();
+                }
+                catch
+                {
+                    MessageBox.Show("이미 생성되어 있는 메뉴입니다");
+                }
             }
             else
             {

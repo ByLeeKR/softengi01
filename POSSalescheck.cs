@@ -165,6 +165,7 @@ namespace SOSIL_POS
             try
             {
                 MySqlDataAdapter adapt = new MySqlDataAdapter(query, connection);
+                dataset.Tables["salesdata"].Rows.Clear();
                 adapt.Fill(dataset, "salesdata");
 
                 //메뉴에 출력

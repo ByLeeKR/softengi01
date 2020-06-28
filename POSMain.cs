@@ -299,14 +299,14 @@ namespace SOSIL_POS
             if (Menus < 1) //메뉴가 없는 경우
             {
                 //MessageBox.Show(DataTable[TableNumber - 1].Tables["TableData"].Rows.Count.ToString());
-                POSSend sendform = new POSSend(f_server);
+                POSSend sendform = new POSSend(f_server, TableNumber);
                 sendform.Show();
             }
             else //메뉴가 있는 경우
             {
                 //변수: 리스트 뷰 아이템, 하위 폼 생성
                 string[] senddata = new string[3];
-                POSSend sendform = new POSSend(f_server);
+                POSSend sendform = new POSSend(f_server, TableNumber);
 
                 for (int i = 0; i < Menus; i++)
                 {

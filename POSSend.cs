@@ -13,13 +13,15 @@ namespace SOSIL_POS
 {
     public partial class POSSend : Form
     {
+        int tnum;
         POSServer serv;
         string Message;
         int amount;
-        public POSSend(POSServer ps)
+        public POSSend(POSServer ps, int num)
         {
             InitializeComponent();
             serv = ps;
+            tnum = num;
         }
 
         public void GetFatherList(string[] receive)
@@ -33,7 +35,7 @@ namespace SOSIL_POS
 
         private void MenuList_DoubleClick(object sender, EventArgs e)
         {
-            Message = MenuList.FocusedItem.Text;
+            Message = tnum.ToString() + MenuList.FocusedItem.Text;
             serv.sendrequest(Message);
         }
 
@@ -44,7 +46,7 @@ namespace SOSIL_POS
                 amount = int.Parse(MenuList.Items[i].SubItems[1].Text);
                 for (int j = 1; j <= amount; j++)
                 {
-                    Message = MenuList.Items[i].Text;
+                    Message = tnum.ToString() + MenuList.Items[i].Text;
                     serv.sendrequest(Message);
                 }
             }

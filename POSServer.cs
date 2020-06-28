@@ -58,7 +58,6 @@ namespace SOSIL_POS
                     t_server.Start();
                     open = true;
                     BtnOpen.Text = "서버 끄기";
-                    this.Hide();
                 }
                 catch
                 {
