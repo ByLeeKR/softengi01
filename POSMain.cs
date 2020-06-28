@@ -271,7 +271,11 @@ namespace SOSIL_POS
 
         private void BtnServer_Click(object sender, EventArgs e)
         {
-
+            if(!f_server.isconnected())
+            {
+                MessageBox.Show("연결된 클라이언트가 없습니다");
+                return;
+            }
             //테이블의 데이터 셋을 보내고, 
             //변수: 테이블 번호
             int TableNumber = 0;
@@ -307,7 +311,7 @@ namespace SOSIL_POS
                 for (int i = 0; i < Menus; i++)
                 {
                     //값이 있다고 판단, 해당 데이터들을 찾고 반복문으로 ListViewItem에 하나씩 쌓고 전송
-                    senddata[0] = DataTable[0].Tables["TableData"].Rows[i][0].ToString();
+                    senddata[0] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][0].ToString();
                     senddata[1] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][1].ToString();
                     senddata[2] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][2].ToString();
                     sendform.GetFatherList(senddata);

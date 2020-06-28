@@ -132,6 +132,11 @@ namespace SOSIL_POS
             e.Cancel = true;
         }
 
+        public bool isconnected()
+        {
+            return connected;
+        }
+
         public void methodClose()
         {
             try
@@ -149,6 +154,13 @@ namespace SOSIL_POS
                     m_stream.Close();
                     t_read.Abort();
                     t_server.Abort();
+                    return;
+                }
+                else if (open)
+                {
+                    t_read.Abort();
+                    t_server.Abort();
+                    return;
                 }
             }
             catch
