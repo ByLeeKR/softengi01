@@ -136,14 +136,20 @@ namespace SOSIL_POS
         {
             try
             {
-                m_write.WriteLine("Serverclosed");
-                m_write.Flush();
-                m_write.Close();
-                m_read.Close();
-                m_stream.Close();
-                m_listener.Stop();
-                t_read.Abort();
-                t_server.Abort();
+                if(open)
+                {
+                    m_listener.Stop();
+                }
+                if (connected)
+                {
+                    m_write.WriteLine("Serverclosed");
+                    m_write.Flush();
+                    m_write.Close();
+                    m_read.Close();
+                    m_stream.Close();
+                    t_read.Abort();
+                    t_server.Abort();
+                }
             }
             catch
             {

@@ -25,9 +25,9 @@ namespace SOSIL_POS
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            if(TxtID.Text == "" || TxtPW.Text == "" || TxtPort.Text == "")  // 입력되지 않은 경우
+            if(TxtID.Text == "" || TxtPort.Text == "")  // 입력되지 않은 경우
             {
-                MessageBox.Show("ID, 패스워드 혹은 Root가 입력되지 않았습니다.");
+                MessageBox.Show("Port번호가 입력되지 않았습니다.");
             }
             else //입력된 값이 있을 경우 DB 연결 시도
             {
