@@ -16,6 +16,7 @@ namespace SOSIL_POS
     {
         private MainLogin Father;    // 부모 폼에 동작을 전달하기 위해 선언
         private string SQLLOGIN; // SQL 정보를 전달받기 위한 변수, 부모 폼에서 전달 받음
+        POSServer f_server;
 
         List<DataSet> DataTable = new List<DataSet>();
 
@@ -29,6 +30,7 @@ namespace SOSIL_POS
             {
                 DataTable.Add(new DataSet());
             }
+            f_server = new POSServer();
             //DataTable[0].Tables["TableData"].Rows.Add(new object[] { "김밥", 5, 5000 });
             //MessageBox.Show(DataTable[0].Tables["TableData"].Rows[0][0].ToString()); //김밥이 출력댐!
             //int v = DataTable[1].Tables["Person"].Rows.Count;
@@ -37,6 +39,7 @@ namespace SOSIL_POS
 
         private void POSMain_FormClosed(object sender, FormClosedEventArgs e)   // 자식 POS가 닫혔을 때 Login 폼도 같이 닫기
         {
+            f_server.methodClose();
             Father.Close();
         }
 
@@ -263,6 +266,58 @@ namespace SOSIL_POS
         {
             POSSalescheck salesform = new POSSalescheck(SQLLOGIN);
             salesform.Show();
+        }
+
+        private void BtnServer_Click(object sender, EventArgs e)
+        {
+
+            //테이블의 데이터 셋을 보내고, 
+            //변수: 테이블 번호
+            int TableNumber = 0;
+            //테이블 번호 찾기
+            for (int i = 1; i <= 20; i++)
+            {
+                if (TableNumLbl.Text == "테이블 번호: " + i.ToString()) //라벨 이름과 i의 비교
+                {
+                    TableNumber = i;
+                }
+            }
+            if (TableNumber == 0) //못 찾은 경우 (구조 에러)
+            {
+                MessageBox.Show("테이블이 선택되지 않았습니다.");
+                return;
+            }
+
+
+            //변수: 해당 테이블의 현재 선택된 메뉴 개수
+            int Menus = DataTable[TableNumber - 1].Tables["TableData"].Rows.Count;
+            if (Menus < 1) //메뉴가 없는 경우
+            {
+                //MessageBox.Show(DataTable[TableNumber - 1].Tables["TableData"].Rows.Count.ToString());
+                POSSend sendform = new POSSend(f_server);
+                sendform.Show();
+            }
+            else //메뉴가 있는 경우
+            {
+                //변수: 리스트 뷰 아이템, 하위 폼 생성
+                string[] senddata = new string[3];
+                POSSend sendform = new POSSend(f_server);
+
+                for (int i = 0; i < Menus; i++)
+                {
+                    //값이 있다고 판단, 해당 데이터들을 찾고 반복문으로 ListViewItem에 하나씩 쌓고 전송
+                    senddata[0] = DataTable[0].Tables["TableData"].Rows[i][0].ToString();
+                    senddata[1] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][1].ToString();
+                    senddata[2] = DataTable[TableNumber - 1].Tables["TableData"].Rows[i][2].ToString();
+                    sendform.GetFatherList(senddata);
+                }
+                sendform.Show();
+            }
+        }
+
+        private void BtnServerManage_Click(object sender, EventArgs e)
+        {
+            f_server.Show();
         }
     }
 }

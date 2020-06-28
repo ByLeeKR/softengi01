@@ -62,6 +62,8 @@
             this.ColumnPrices = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.TableNumLbl = new System.Windows.Forms.Label();
+            this.BtnServer = new System.Windows.Forms.Button();
+            this.BtnServerManage = new System.Windows.Forms.Button();
             this.LayoutTable.SuspendLayout();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -502,11 +504,33 @@
             this.TableNumLbl.TabIndex = 13;
             this.TableNumLbl.Text = "테이블 번호: ";
             // 
+            // BtnServer
+            // 
+            this.BtnServer.Location = new System.Drawing.Point(395, 361);
+            this.BtnServer.Name = "BtnServer";
+            this.BtnServer.Size = new System.Drawing.Size(128, 82);
+            this.BtnServer.TabIndex = 14;
+            this.BtnServer.Text = "메뉴 전송";
+            this.BtnServer.UseVisualStyleBackColor = true;
+            this.BtnServer.Click += new System.EventHandler(this.BtnServer_Click);
+            // 
+            // BtnServerManage
+            // 
+            this.BtnServerManage.Location = new System.Drawing.Point(267, 361);
+            this.BtnServerManage.Name = "BtnServerManage";
+            this.BtnServerManage.Size = new System.Drawing.Size(128, 82);
+            this.BtnServerManage.TabIndex = 15;
+            this.BtnServerManage.Text = "서버 관리";
+            this.BtnServerManage.UseVisualStyleBackColor = true;
+            this.BtnServerManage.Click += new System.EventHandler(this.BtnServerManage_Click);
+            // 
             // POSMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(793, 455);
+            this.Controls.Add(this.BtnServerManage);
+            this.Controls.Add(this.BtnServer);
             this.Controls.Add(this.TableNumLbl);
             this.Controls.Add(this.LayoutTable);
             this.Controls.Add(this.label1);
@@ -565,5 +589,7 @@
         private System.Windows.Forms.Label Table1;
         private System.Windows.Forms.Label TableNumLbl;
         private System.Windows.Forms.ToolStripMenuItem TSCprogramExit;
+        private System.Windows.Forms.Button BtnServer;
+        private System.Windows.Forms.Button BtnServerManage;
     }
 }
