@@ -74,10 +74,10 @@ namespace SOSIL_POS
                 try
                 {
                     m_client = m_listener.AcceptTcpClient();
-                    temp_stream = m_client.GetStream();
-                    temp_write = new StreamWriter(temp_stream);
                     if (connected)
                     {
+                        temp_stream = m_client.GetStream();
+                        temp_write = new StreamWriter(temp_stream);
                         temp_write.WriteLine("AlreadyConnected");
                         temp_write.Close();
                         temp_stream.Close();
@@ -89,6 +89,7 @@ namespace SOSIL_POS
                         m_write = new StreamWriter(m_stream);
                         m_read = new StreamReader(m_stream);
                         t_read = new Thread(new ThreadStart(reader));
+                        t_read.Start();
                         connected = true;
                     }
                 }
@@ -105,11 +106,12 @@ namespace SOSIL_POS
             while(true)
             {
                 Message = m_read.ReadLine();
-                if(Message == "Disconnect")
+                if (Message == "Disconnect")
                 {
                     m_write.Close();
                     m_read.Close();
                     m_stream.Close();
+                    connected = false;
                     return;
                 }
             }
@@ -134,6 +136,8 @@ namespace SOSIL_POS
         {
             try
             {
+                m_write.WriteLine("Serverclosed");
+                m_write.Flush();
                 m_write.Close();
                 m_read.Close();
                 m_stream.Close();

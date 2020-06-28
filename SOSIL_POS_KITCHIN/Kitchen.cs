@@ -71,6 +71,16 @@ namespace SOSIL_POS_KITCHIN
                     MessageBox.Show("이미 다른 클라이언트가 연결되어있습니다");
                     return;
                 }
+                else if (Message == "Serverclosed")
+                {
+                    m_read.Close();
+                    m_write.Close();
+                    m_client.Close();
+                    connected = false;
+                    MessageBox.Show("서버가 종료되었습니다");
+                    return;
+
+                }
                 else
                 {
                     ChkLBox.Items.Add(num.ToString() + " " + Message);
@@ -96,7 +106,7 @@ namespace SOSIL_POS_KITCHIN
                 m_client.Close();
                 Receiver.Abort();
             }
-            Parents.Close();
+            Parents.Show();
             this.Close();
         }
 
