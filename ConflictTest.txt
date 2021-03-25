@@ -1,5 +1,3 @@
 First Time commit test
-Second Time commit test
-Fourth Test
-Fifth Test
+Conflict Test
 Six
